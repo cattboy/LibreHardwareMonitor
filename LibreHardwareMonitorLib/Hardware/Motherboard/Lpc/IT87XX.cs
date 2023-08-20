@@ -72,7 +72,8 @@ internal class IT87XX : ISuperIO
 
         FAN_PWM_CTRL_REG = chip switch
         {
-            Chip.IT8665E or Chip.IT8625E =>new byte[] { 0x15, 0x16, 0x17, 0x1e, 0x1f, 0x92 },
+            Chip.IT8665E or Chip.IT8625E => new byte[] { 0x15, 0x16, 0x17, 0x1e, 0x1f, 0x92 },
+            Chip.IT8792E => new byte[] { 0x15, 0x16, 0x17 },
             _ => new byte[] { 0x15, 0x16, 0x17, 0x7f, 0xa7, 0xaf }
         };
 
@@ -191,8 +192,8 @@ internal class IT87XX : ISuperIO
         _voltageGain = chip switch
         {
             Chip.IT8613E or Chip.IT8620E or Chip.IT8628E or Chip.IT8631E or Chip.IT8721F or Chip.IT8728F or Chip.IT8771E or Chip.IT8772E or Chip.IT8686E or Chip.IT8688E or Chip.IT8689E => 0.012f,
-            Chip.IT8625E or Chip.IT8792E or Chip.IT87952E => 0.011f,
-            Chip.IT8655E or Chip.IT8665E => 0.0109f,
+            Chip.IT8625E or Chip.IT87952E => 0.011f,
+            Chip.IT8655E or Chip.IT8665E or Chip.IT8792E => 0.0109f,
             _ => 0.016f
         };
 
